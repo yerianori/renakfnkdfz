@@ -12,6 +12,22 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden; /* Mencegah scroll horizontal jika animasi melebihi lebar */
+    position: relative; /* Untuk posisi absolut dekorasi */
+}
+
+/* Elemen dekorasi kertas di latar belakang */
+.paper-decoration {
+    position: fixed; /* Tetap di tempat saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Agar tidak menghalangi interaksi dengan elemen lain */
+    z-index: -1; /* Di belakang semua konten utama */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white" opacity="0.8"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="rgba(204, 0, 0, 0.1)" stroke-width="2"/></svg>');
+    background-size: 300px 300px; /* Ukuran pola */
+    background-repeat: repeat;
+    opacity: 0.7; /* Sedikit transparan */
 }
 
 /* Gaya Container Utama */
@@ -25,6 +41,7 @@ body {
     border-radius: 8px; /* Sudut membulat */
     position: relative; /* Untuk posisi absolut elemen dekoratif */
     overflow: hidden; /* Sembunyikan overflow dari animasi */
+    z-index: 2; /* Di atas dekorasi kertas, di bawah logo */
 }
 
 /* Elemen dekoratif garis merah di atas */
@@ -36,7 +53,18 @@ body {
     right: 0;
     height: 5px;
     background-color: #cc0000; /* Warna Merah */
-    z-index: 10; /* Di atas konten */
+    z-index: 10; /* Di atas konten container */
+}
+
+/* Elemen untuk logo Linux */
+.linux-logo {
+    position: fixed; /* Tetap di tempat saat scroll */
+    top: 20px; /* Jarak dari atas */
+    right: 20px; /* Jarak dari kanan */
+    width: 60px; /* Ukuran logo */
+    height: auto; /* Menjaga rasio aspek */
+    z-index: 5; /* Di atas dekorasi kertas, di bawah tombol navigasi potensial */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)); /* Bayangan lembut */
 }
 
 /* Gaya Halaman dengan efek transisi */
@@ -112,6 +140,8 @@ button {
     margin-top: 10px;
     transition: background-color 0.3s, transform 0.2s; /* Transisi warna dan ukuran */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan tombol */
+    z-index: 3; /* Di atas container jika perlu */
+    position: relative; /* Untuk z-index */
 }
 
 button:hover {
