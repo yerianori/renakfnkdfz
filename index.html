@@ -4,173 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemilih Distro Dinamis</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS -->
 </head>
 <body>
+    <!-- Dekorasi Kertas -->
+    <div class="paper-decoration"></div>
 
-    <div id="page-1" class="page active">
-        <h1>Pemilih Distro Dinamis</h1>
-        <p>Selamat datang di Pemilih Distro Dinamis!</p>
-        <p>Aplikasi ini dirancang untuk membantu Anda menemukan distribusi Linux yang paling sesuai berdasarkan kebutuhan penggunaan dan spesifikasi perangkat keras Anda.</p>
-        <button onclick="showPage(2)">Mulai Kuesioner</button>
-    </div>
+    <!-- Logo Linux -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Logo Linux" class="linux-logo">
 
-    <div id="page-2" class="page">
-        <h2>Kebutuhan Penggunaan (1)</h2>
-        <form id="question-form-1">
-            <label for="usage-type">Apa tujuan utama Anda menggunakan Linux?</label>
-            <select name="usage-type" id="usage-type">
-                <option value="">-- Pilih --</option>
-                <option value="daily-driver">Sebagai sistem operasi utama sehari-hari</option>
-                <option value="server">Untuk manajemen server</option>
-                <option value="gaming">Sebagai platform gaming</option>
-                <option value="privacy-anonymity">Untuk privasi dan anonimitas</option>
-                <option value="development">Untuk pengembangan perangkat lunak</option>
-                <option value="education">Untuk pendidikan atau belajar</option>
-                <option value="embedded-iot">Untuk perangkat embedded atau IoT</option>
-                <option value="other-needs">Kebutuhan khusus lainnya</option>
-            </select>
-
-            <label for="specific-purpose">Jika 'Kebutuhan khusus lainnya', jelaskan secara singkat:</label>
-            <input type="text" id="specific-purpose" placeholder="Contoh: Editing video, Streaming, dll.">
-
-            <button type="button" onclick="showPage(3)">Selanjutnya</button>
-        </form>
-    </div>
-
-    <div id="page-3" class="page">
-        <h2>Kebutuhan Penggunaan (2)</h2>
-        <form id="question-form-2">
-            <label for="desktop-experience">Seberapa penting pengalaman desktop yang ramah pengguna bagi Anda?</label>
-            <select name="desktop-experience" id="desktop-experience">
-                <option value="">-- Pilih --</option>
-                <option value="very-important">Sangat penting (mudah digunakan, mirip Windows/macOS)</option>
-                <option value="important">Cukup penting, tapi saya siap belajar sedikit</option>
-                <option value="not-important">Tidak terlalu penting, saya lebih suka kontrol penuh</option>
-            </select>
-
-            <label for="customization-level">Seberapa banyak kustomisasi yang Anda inginkan?</label>
-            <select name="customization-level" id="customization-level">
-                <option value="">-- Pilih --</option>
-                <option value="low">Rendah (tampilan dan pengaturan standar)</option>
-                <option value="medium">Sedang (beberapa opsi penyesuaian)</option>
-                <option value="high">Tinggi (kontrol penuh terhadap sistem)</option>
-            </select>
-
-            <button type="button" onclick="showPage(4)">Selanjutnya</button>
-        </form>
-    </div>
-
-    <div id="page-4" class="page">
-        <h2>Kebutuhan Penggunaan (3)</h2>
-        <form id="question-form-3">
-            <label for="hardware-compatibility">Seberapa penting dukungan perangkat keras yang luas?</label>
-            <select name="hardware-compatibility" id="hardware-compatibility">
-                <option value="">-- Pilih --</option>
-                <option value="critical">Sangat penting (harus kompatibel dengan perangkat saya)</option>
-                <option value="important">Penting, tapi saya bisa mencari solusi jika perlu</option>
-                <option value="flexible">Fleksibel, saya tidak keberatan mengganti perangkat keras</option>
-            </select>
-
-            <label for="update-model">Model rilis mana yang Anda sukai?</label>
-            <select name="update-model" id="update-model">
-                <option value="">-- Pilih --</option>
-                <option value="stable-lts">Stabil (rilis besar jarang, dukungan panjang)</option>
-                <option value="regular">Reguler (pembaruan rutin setiap 6 bulan)</option>
-                <option value="rolling-release">Rolling release (selalu mutakhir)</option>
-            </select>
-
-            <button type="button" onclick="showPage(5)">Selanjutnya</button>
-        </form>
-    </div>
-
-    <div id="page-5" class="page">
-        <h2>Spesifikasi Perangkat Keras (1)</h2>
-        <form id="hardware-form-1">
-            <label for="architecture">Arsitektur prosesor perangkat Anda?</label>
-            <select name="architecture" id="architecture">
-                <option value="">-- Pilih --</option>
-                <option value="32-bit">32-bit (x86)</option>
-                <option value="64-bit">64-bit (x86_64)</option>
-                <option value="arm">ARM (misalnya, Raspberry Pi, perangkat mobile)</option>
-            </select>
-
-            <label for="ram">Berapa besar RAM (Memori) utama Anda?</label>
-            <select name="ram" id="ram">
-                <option value="">-- Pilih --</option>
-                <option value="512">512 MB</option>
-                <option value="1024">1 GB</option>
-                <option value="2048">2 GB</option>
-                <option value="4096">4 GB</option>
-                <option value="8192">8 GB</option>
-                <option value="16384">16 GB atau lebih</option>
-            </select>
-
-            <button type="button" onclick="showPage(6)">Selanjutnya</button>
-        </form>
-    </div>
-
-    <div id="page-6" class="page">
-        <h2>Spesifikasi Perangkat Keras (2)</h2>
-        <form id="hardware-form-2">
-            <label for="storage">Berapa besar ruang penyimpanan kosong yang tersedia?</label>
-            <select name="storage" id="storage">
-                <option value="">-- Pilih --</option>
-                <option value="small">Kecil (&lt; 10 GB)</option>
-                <option value="medium">Sedang (10 - 20 GB)</option>
-                <option value="large">Besar (&gt; 20 GB)</option>
-            </select>
-
-            <label for="device-age">Perangkat keras Anda termasuk jenis?</label>
-            <select name="device-age" id="device-age">
-                <option value="">-- Pilih --</option>
-                <option value="old">Lama (10+ tahun)</option>
-                <option value="mid">Sedang (5-10 tahun)</option>
-                <option value="modern">Modern (&lt; 5 tahun)</option>
-            </select>
-
-            <button type="button" onclick="showPage(7)">Selanjutnya</button>
-        </form>
-    </div>
-
-    <div id="page-7" class="page">
-        <h2>Spesifikasi Perangkat Keras (3)</h2>
-        <form id="hardware-form-3">
-            <label for="gpu-type">Jenis kartu grafis utama Anda?</label>
-            <select name="gpu-type" id="gpu-type">
-                <option value="">-- Pilih --</option>
-                <option value="integrated">Terintegrasi (Intel HD/UHD, AMD Vega iGPU)</option>
-                <option value="discrete-nvidia">Diskrit NVIDIA</option>
-                <option value="discrete-amd">Diskrit AMD</option>
-                <option value="discrete-intel">Diskrit Intel Arc</option>
-                <option value="basic">Grafis dasar (untuk sistem lama)</option>
-            </select>
-
-            <label for="disk-type">Jenis media penyimpanan utama?</label>
-            <select name="disk-type" id="disk-type">
-                <option value="">-- Pilih --</option>
-                <option value="hdd">Hard Disk Drive (HDD)</option>
-                <option value="ssd">Solid State Drive (SSD)</option>
-            </select>
-
-            <button type="button" onclick="calculateResults(); showPage(8)">Lihat Hasil</button>
-        </form>
-    </div>
-
-    <div id="page-8" class="page">
-        <h2>Rekomendasi Distro Anda</h2>
-        <div id="results-container">
-            <p>Hasil rekomendasi akan muncul di sini...</p>
+    <div class="container">
+        <!-- Halaman 1: Starter Page -->
+        <div id="page-1" class="page active">
+            <h1>Pemilih Distro Dinamis</h1>
+            <p>Selamat datang di Pemilih Distro Dinamis!</p>
+            <p>Aplikasi ini dirancang untuk membantu Anda menemukan distribusi Linux yang paling sesuai berdasarkan kebutuhan penggunaan dan spesifikasi perangkat keras Anda.</p>
+            <button onclick="showPage(2)">Mulai Kuesioner</button>
         </div>
-        <button onclick="showPage(1)">Ulangi Kuesioner</button>
+
+        <!-- Halaman 2: Pertanyaan Kebutuhan 1 -->
+        <div id="page-2" class="page">
+            <h2>Kebutuhan Penggunaan (1)</h2>
+            <form id="question-form-1">
+                <label for="usage-type">Apa tujuan utama Anda menggunakan Linux?</label>
+                <select name="usage-type" id="usage-type">
+                    <option value="">-- Pilih --</option>
+                    <option value="daily-driver">Sebagai sistem operasi utama sehari-hari</option>
+                    <option value="server">Untuk manajemen server</option>
+                    <option value="gaming">Sebagai platform gaming</option>
+                    <option value="privacy-anonymity">Untuk privasi dan anonimitas</option>
+                    <option value="development">Untuk pengembangan perangkat lunak</option>
+                    <option value="education">Untuk pendidikan atau belajar</option>
+                    <option value="embedded-iot">Untuk perangkat embedded atau IoT</option>
+                    <option value="other-needs">Kebutuhan khusus lainnya</option>
+                </select>
+
+                <label for="specific-purpose">Jika 'Kebutuhan khusus lainnya', jelaskan secara singkat:</label>
+                <input type="text" id="specific-purpose" placeholder="Contoh: Editing video, Streaming, dll.">
+
+                <button type="button" onclick="showPage(3)">Selanjutnya</button>
+            </form>
+        </div>
+
+        <!-- Halaman 3: Pertanyaan Kebutuhan 2 -->
+        <div id="page-3" class="page">
+            <h2>Kebutuhan Penggunaan (2)</h2>
+            <form id="question-form-2">
+                <label for="desktop-experience">Seberapa penting pengalaman desktop yang ramah pengguna bagi Anda?</label>
+                <select name="desktop-experience" id="desktop-experience">
+                    <option value="">-- Pilih --</option>
+                    <option value="very-important">Sangat penting (mudah digunakan, mirip Windows/macOS)</option>
+                    <option value="important">Cukup penting, tapi saya siap belajar sedikit</option>
+                    <option value="not-important">Tidak terlalu penting, saya lebih suka kontrol penuh</option>
+                </select>
+
+                <label for="customization-level">Seberapa banyak kustomisasi yang Anda inginkan?</label>
+                <select name="customization-level" id="customization-level">
+                    <option value="">-- Pilih --</option>
+                    <option value="low">Rendah (tampilan dan pengaturan standar)</option>
+                    <option value="medium">Sedang (beberapa opsi penyesuaian)</option>
+                    <option value="high">Tinggi (kontrol penuh terhadap sistem)</option>
+                </select>
+
+                <button type="button" onclick="showPage(4)">Selanjutnya</button>
+            </form>
+        </div>
+
+        <!-- Halaman 4: Pertanyaan Kebutuhan 3 -->
+        <div id="page-4" class="page">
+            <h2>Kebutuhan Penggunaan (3)</h2>
+            <form id="question-form-3">
+                <label for="hardware-compatibility">Seberapa penting dukungan perangkat keras yang luas?</label>
+                <select name="hardware-compatibility" id="hardware-compatibility">
+                    <option value="">-- Pilih --</option>
+                    <option value="critical">Sangat penting (harus kompatibel dengan perangkat saya)</option>
+                    <option value="important">Penting, tapi saya bisa mencari solusi jika perlu</option>
+                    <option value="flexible">Fleksibel, saya tidak keberatan mengganti perangkat keras</option>
+                </select>
+
+                <label for="update-model">Model rilis mana yang Anda sukai?</label>
+                <select name="update-model" id="update-model">
+                    <option value="">-- Pilih --</option>
+                    <option value="stable-lts">Stabil (rilis besar jarang, dukungan panjang)</option>
+                    <option value="regular">Reguler (pembaruan rutin setiap 6 bulan)</option>
+                    <option value="rolling-release">Rolling release (selalu mutakhir)</option>
+                </select>
+
+                <button type="button" onclick="showPage(5)">Selanjutnya</button>
+            </form>
+        </div>
+
+        <!-- Halaman 5: Pertanyaan Hardware 1 -->
+        <div id="page-5" class="page">
+            <h2>Spesifikasi Perangkat Keras (1)</h2>
+            <form id="hardware-form-1">
+                <label for="architecture">Arsitektur prosesor perangkat Anda?</label>
+                <select name="architecture" id="architecture">
+                    <option value="">-- Pilih --</option>
+                    <option value="32-bit">32-bit (x86)</option>
+                    <option value="64-bit">64-bit (x86_64)</option>
+                    <option value="arm">ARM (misalnya, Raspberry Pi, perangkat mobile)</option>
+                </select>
+
+                <label for="ram">Berapa besar RAM (Memori) utama Anda?</label>
+                <select name="ram" id="ram">
+                    <option value="">-- Pilih --</option>
+                    <option value="512">512 MB</option>
+                    <option value="1024">1 GB</option>
+                    <option value="2048">2 GB</option>
+                    <option value="4096">4 GB</option>
+                    <option value="8192">8 GB</option>
+                    <option value="16384">16 GB atau lebih</option>
+                </select>
+
+                <button type="button" onclick="showPage(6)">Selanjutnya</button>
+            </form>
+        </div>
+
+        <!-- Halaman 6: Pertanyaan Hardware 2 -->
+        <div id="page-6" class="page">
+            <h2>Spesifikasi Perangkat Keras (2)</h2>
+            <form id="hardware-form-2">
+                <label for="storage">Berapa besar ruang penyimpanan kosong yang tersedia?</label>
+                <select name="storage" id="storage">
+                    <option value="">-- Pilih --</option>
+                    <option value="small">Kecil (&lt; 10 GB)</option>
+                    <option value="medium">Sedang (10 - 20 GB)</option>
+                    <option value="large">Besar (&gt; 20 GB)</option>
+                </select>
+
+                <label for="device-age">Perangkat keras Anda termasuk jenis?</label>
+                <select name="device-age" id="device-age">
+                    <option value="">-- Pilih --</option>
+                    <option value="old">Lama (10+ tahun)</option>
+                    <option value="mid">Sedang (5-10 tahun)</option>
+                    <option value="modern">Modern (&lt; 5 tahun)</option>
+                </select>
+
+                <button type="button" onclick="showPage(7)">Selanjutnya</button>
+            </form>
+        </div>
+
+        <!-- Halaman 7: Pertanyaan Hardware 3 -->
+        <div id="page-7" class="page">
+            <h2>Spesifikasi Perangkat Keras (3)</h2>
+            <form id="hardware-form-3">
+                <label for="gpu-type">Jenis kartu grafis utama Anda?</label>
+                <select name="gpu-type" id="gpu-type">
+                    <option value="">-- Pilih --</option>
+                    <option value="integrated">Terintegrasi (Intel HD/UHD, AMD Vega iGPU)</option>
+                    <option value="discrete-nvidia">Diskrit NVIDIA</option>
+                    <option value="discrete-amd">Diskrit AMD</option>
+                    <option value="discrete-intel">Diskrit Intel Arc</option>
+                    <option value="basic">Grafis dasar (untuk sistem lama)</option>
+                </select>
+
+                <label for="disk-type">Jenis media penyimpanan utama?</label>
+                <select name="disk-type" id="disk-type">
+                    <option value="">-- Pilih --</option>
+                    <option value="hdd">Hard Disk Drive (HDD)</option>
+                    <option value="ssd">Solid State Drive (SSD)</option>
+                </select>
+
+                <button type="button" onclick="calculateResults(); showPage(8)">Lihat Hasil</button>
+            </form>
+        </div>
+
+        <!-- Halaman 8: Hasil Rekomendasi -->
+        <div id="page-8" class="page">
+            <h2>Rekomendasi Distro Anda</h2>
+            <div id="results-container">
+                <p>Hasil rekomendasi akan muncul di sini...</p>
+            </div>
+            <button onclick="showPage(1)">Ulangi Kuesioner</button>
+            <button onclick="showPage(9)">Lihat Template</button> <!-- Tombol baru -->
+        </div>
+
+        <!-- Halaman 9: Template Kustomisasi -->
+        <div id="page-9" class="page">
+            <h2>Halaman Template</h2>
+            <p>Ini adalah halaman kosong sebagai contoh template yang bisa Anda kustomisasi.</p>
+            <button onclick="showPage(1)">Kembali ke Awal</button>
+        </div>
     </div>
 
-    <div id="page-9" class="page">
-        <h2>Halaman Template</h2>
-        <p>Ini adalah halaman kosong sebagai contoh template yang bisa Anda kustomisasi.</p>
-        <button onclick="showPage(1)">Kembali ke Awal</button>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link ke file JavaScript -->
 </body>
 </html>
