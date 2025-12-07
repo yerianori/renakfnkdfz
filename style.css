@@ -19,10 +19,9 @@ body {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     z-index: 0;
     transform-origin: center;
-    animation: fly 20s linear infinite; 
-    animation-delay: var(--delay);
+    animation: fly 20s linear infinite;
+    animation-delay: calc(var(--random-delay) * 1s);
 }
-
 .paper-deco.red {
     background-color: #cc0000;
     border-color: #b30000;
@@ -43,7 +42,7 @@ body {
         transform: translate(10vw, -10vh) rotate(10deg); 
     }
     50% {
-        transform: translate(5vw, 15vh) rotate(-5deg); 
+        transform: translate(5vw, 15vh) rotate(-5deg);
     }
     75% {
         transform: translate(-15vw, 5vh) rotate(15deg);
