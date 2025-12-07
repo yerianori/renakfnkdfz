@@ -1,58 +1,86 @@
-/* style.css */
-
-/* Gaya Umum */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ffffff, #ffe6e6); /* Gradien putih ke merah muda pucat */
-    color: #000000; /* Warna Hitam untuk teks */
+    background: linear-gradient(135deg, #ffffff, #ffe6e6);
+    color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Mencegah scroll horizontal jika animasi melebihi lebar */
-    position: relative; /* Untuk posisi absolut dekorasi */
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* Dekorasi Kertas */
+.logo-bg {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.7; 
+    animation: float 8s infinite ease-in-out; 
+}
+
+.logo-bg:nth-child(2n) {
+    animation-duration: 10s; 
+    animation-delay: 1s;
+}
+
+.logo-bg:nth-child(3n) {
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(10px, 15px) rotate(5deg);
+    }
+    50% {
+        transform: translate(0, 30px) rotate(0deg);
+    }
+    75% {
+        transform: translate(-10px, 15px) rotate(-5deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
 .paper-deco {
     position: absolute;
-    background-color: #fff; /* Warna dasar kertas adalah putih */
-    border: 2px dashed #ccc; /* Garis putus-putus untuk efek pinggiran kertas */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Bayangan lembut */
-    z-index: 0; /* Di belakang konten utama */
-    transform-origin: center; /* Titik rotasi di tengah */
+    background-color: #fff;
+    border: 2px dashed #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    z-index: 0;
+    transform-origin: center;
 }
 
-/* Variasi warna untuk dekorasi kertas */
 .paper-deco.red {
-    background-color: #cc0000; /* Warna Merah */
+    background-color: #cc0000;
     border-color: #b30000;
-    color: white; /* Teks putih di atas merah */
+    color: white;
 }
 
 .paper-deco.black {
-    background-color: #000000; /* Warna Hitam */
+    background-color: #000000;
     border-color: #333;
-    color: #ccc; /* Teks abu-abu terang di atas hitam */
+    color: #ccc;
 }
 
-/* Container Utama (Konten Aplikasi) */
 .container {
     width: 90%;
     max-width: 800px;
     padding: 20px;
     border: 1px solid #ccc;
-    box-shadow: 0 0 20px rgba(204, 0, 0, 0.2); /* Bayangan merah lembut */
-    background-color: rgba(255, 255, 255, 0.95); /* Putih dengan sedikit transparansi */
-    border-radius: 8px; /* Sudut membulat */
-    position: relative; /* Untuk posisi relatif terhadap dekorasi */
-    z-index: 2; /* Di atas dekorasi kertas */
-    overflow: hidden; /* Sembunyikan overflow dari animasi dalam container */
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
 }
 
-/* Elemen dekoratif garis merah di atas container */
 .container::before {
     content: '';
     position: absolute;
@@ -60,45 +88,42 @@ body {
     left: 0;
     right: 0;
     height: 5px;
-    background-color: #cc0000; /* Warna Merah */
-    z-index: 10; /* Di atas konten container */
+    background-color: #cc0000;
+    z-index: 10;
 }
 
-/* Gaya Halaman dengan efek transisi */
 .page {
-    display: none; /* Sembunyikan semua halaman secara default */
+    display: none;
     padding: 20px;
     text-align: center;
-    opacity: 0; /* Mulai transparan */
-    transform: translateY(20px); /* Mulai sedikit di bawah */
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transisi halus */
-    position: relative; /* Untuk z-index */
-    z-index: 1; /* Di bawah dekorasi garis container */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    position: relative;
+    z-index: 1;
 }
 
 .page.active {
-    display: block; /* Tampilkan halaman aktif */
-    opacity: 1; /* Jadikan tidak transparan */
-    transform: translateY(0); /* Kembali ke posisi aslinya */
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Gaya Judul */
 h1 {
-    color: #b30000; /* Warna Merah Gelap */
+    color: #b30000;
     margin-bottom: 20px;
-    font-size: 2.5em; /* Ukuran lebih besar */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Bayangan teks lembut */
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 h2 {
-    color: #cc0000; /* Warna Merah Sedang */
+    color: #cc0000;
     margin-bottom: 15px;
-    font-size: 1.8em; /* Ukuran lebih besar */
+    font-size: 1.8em;
 }
 
-/* Gaya Formulir */
 form {
-    text-align: left; /* Ratakan teks ke kiri dalam formulir */
+    text-align: left;
     margin-top: 20px;
 }
 
@@ -116,18 +141,17 @@ select, input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    transition: border-color 0.3s; /* Transisi warna border */
+    transition: border-color 0.3s;
 }
 
 select:focus, input[type="text"]:focus {
-    outline: none; /* Hapus outline default */
-    border-color: #cc0000; /* Warna border saat focus */
-    box-shadow: 0 0 5px rgba(204, 0, 0, 0.2); /* Bayangan lembut saat focus */
+    outline: none;
+    border-color: #cc0000;
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
 }
 
-/* Gaya Tombol dengan animasi hover */
 button {
-    background-color: #cc0000; /* Warna Merah */
+    background-color: #cc0000;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -135,46 +159,43 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
-    transition: background-color 0.3s, transform 0.2s; /* Transisi warna dan ukuran */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan tombol */
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 button:hover {
-    background-color: #b30000; /* Warna Merah Gelap saat hover */
-    transform: scale(1.05); /* Sedikit membesar saat hover */
+    background-color: #b30000;
+    transform: scale(1.05);
 }
 
 button:active {
-    transform: scale(0.98); /* Sedikit mengecil saat ditekan */
+    transform: scale(0.98);
 }
 
-/* Gaya untuk Halaman Hasil */
 #results-container {
-    text-align: left; /* Ratakan teks ke kiri untuk hasil */
+    text-align: left;
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #eee;
     background-color: #f9f9f9;
     border-radius: 4px;
-    max-height: 50vh; /* Batasi tinggi maksimum */
-    overflow-y: auto; /* Scroll vertikal jika perlu */
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 #results-container p {
     margin: 0 0 10px 0;
 }
 
-/* Gaya untuk Item Rekomendasi */
 .recommendation-item {
     background-color: #f0f0f0;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
-    border-left: 4px solid #cc0000; /* Garis samping merah */
-    animation: fadeInUp 0.4s ease-out; /* Animasi muncul dari bawah */
+    border-left: 4px solid #cc0000;
+    animation: fadeInUp 0.4s ease-out;
 }
 
-/* Animasi untuk item rekomendasi */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -186,7 +207,6 @@ button:active {
     }
 }
 
-/* Animasi untuk teks judul halaman */
 @keyframes titleSlideIn {
     from {
         transform: translateX(-20px);
