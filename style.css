@@ -15,22 +15,30 @@ body {
     position: relative; /* Untuk posisi absolut dekorasi */
 }
 
-/* Elemen dekorasi kertas di latar belakang */
-.paper-decoration {
-    position: fixed; /* Tetap di tempat saat scroll */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Agar tidak menghalangi interaksi dengan elemen lain */
-    z-index: -1; /* Di belakang semua konten utama */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white" opacity="0.8"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="rgba(204, 0, 0, 0.1)" stroke-width="2"/></svg>');
-    background-size: 300px 300px; /* Ukuran pola */
-    background-repeat: repeat;
-    opacity: 0.7; /* Sedikit transparan */
+/* Dekorasi Kertas */
+.paper-deco {
+    position: absolute;
+    background-color: #fff; /* Warna dasar kertas adalah putih */
+    border: 2px dashed #ccc; /* Garis putus-putus untuk efek pinggiran kertas */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Bayangan lembut */
+    z-index: 0; /* Di belakang konten utama */
+    transform-origin: center; /* Titik rotasi di tengah */
 }
 
-/* Gaya Container Utama */
+/* Variasi warna untuk dekorasi kertas */
+.paper-deco.red {
+    background-color: #cc0000; /* Warna Merah */
+    border-color: #b30000;
+    color: white; /* Teks putih di atas merah */
+}
+
+.paper-deco.black {
+    background-color: #000000; /* Warna Hitam */
+    border-color: #333;
+    color: #ccc; /* Teks abu-abu terang di atas hitam */
+}
+
+/* Container Utama (Konten Aplikasi) */
 .container {
     width: 90%;
     max-width: 800px;
@@ -39,12 +47,12 @@ body {
     box-shadow: 0 0 20px rgba(204, 0, 0, 0.2); /* Bayangan merah lembut */
     background-color: rgba(255, 255, 255, 0.95); /* Putih dengan sedikit transparansi */
     border-radius: 8px; /* Sudut membulat */
-    position: relative; /* Untuk posisi absolut elemen dekoratif */
-    overflow: hidden; /* Sembunyikan overflow dari animasi */
-    z-index: 2; /* Di atas dekorasi kertas, di bawah logo */
+    position: relative; /* Untuk posisi relatif terhadap dekorasi */
+    z-index: 2; /* Di atas dekorasi kertas */
+    overflow: hidden; /* Sembunyikan overflow dari animasi dalam container */
 }
 
-/* Elemen dekoratif garis merah di atas */
+/* Elemen dekoratif garis merah di atas container */
 .container::before {
     content: '';
     position: absolute;
@@ -56,17 +64,6 @@ body {
     z-index: 10; /* Di atas konten container */
 }
 
-/* Elemen untuk logo Linux */
-.linux-logo {
-    position: fixed; /* Tetap di tempat saat scroll */
-    top: 20px; /* Jarak dari atas */
-    right: 20px; /* Jarak dari kanan */
-    width: 60px; /* Ukuran logo */
-    height: auto; /* Menjaga rasio aspek */
-    z-index: 5; /* Di atas dekorasi kertas, di bawah tombol navigasi potensial */
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)); /* Bayangan lembut */
-}
-
 /* Gaya Halaman dengan efek transisi */
 .page {
     display: none; /* Sembunyikan semua halaman secara default */
@@ -76,7 +73,7 @@ body {
     transform: translateY(20px); /* Mulai sedikit di bawah */
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transisi halus */
     position: relative; /* Untuk z-index */
-    z-index: 1; /* Di bawah dekorasi garis */
+    z-index: 1; /* Di bawah dekorasi garis container */
 }
 
 .page.active {
@@ -140,8 +137,6 @@ button {
     margin-top: 10px;
     transition: background-color 0.3s, transform 0.2s; /* Transisi warna dan ukuran */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan tombol */
-    z-index: 3; /* Di atas container jika perlu */
-    position: relative; /* Untuk z-index */
 }
 
 button:hover {
