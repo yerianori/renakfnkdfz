@@ -688,39 +688,42 @@ function getAnswers() {
 
 function calculateResults() {
     const answers = getAnswers();
-    const scores = {}; 
+    const scores = {};
 
     distroData.forEach(distro => {
         let score = 0;
-        let maxScore = 0; 
+        let maxScore = 0;
 
-        if (answers.usageType) {
+        if (answers.usageType === "other-needs") {
             maxScore += 1;
-            if (distro["Kategori"].toLowerCase().includes(answers.usageType.toLowerCase())) {
-                score += 1;
+            const searchTerms = answers.specificPurpose.toLowerCase();
+            if (searchTerms && (distro["Fitur Utama"].toLowerCase().includes(searchTerms) ||
+                                distro["Filosofi/Target"].toLowerCase().includes(searchTerms) ||
+                                distro["Catatan"].toLowerCase().includes(searchTerms))) {
+                score += 1; 
             }
-
-            if (answers.specificPurpose && distro["Fitur Utama"].toLowerCase().includes(answers.specificPurpose)) {
-                score += 1;
-                maxScore += 1; 
+        } else {
+            if (answers.usageType) {
+                maxScore += 1;
+                if (distro["Kategori"].toLowerCase().includes(answers.usageType.toLowerCase())) {
+                    score += 1;
+                }
             }
         }
 
         if (answers.desktopExperience) {
             maxScore += 1;
             if (answers.desktopExperience === "very-important") {
-
                 if (["Sangat Mudah", "Mudah"].includes(distro["Kesulitan Instalasi"])) {
                     score += 1;
                 }
             } else if (answers.desktopExperience === "not-important") {
-                
                 if (["Sangat Mudah", "Mudah"].includes(distro["Kesulitan Instalasi"])) {
-                    score -= 0.5; 
+                    score -= 0.5; // Penalti kecil
                 }
             }
         }
-
+        
         if (answers.customizationLevel) {
             maxScore += 1;
             if (answers.customizationLevel === "high") {
@@ -737,7 +740,6 @@ function calculateResults() {
         if (answers.hardwareCompatibility) {
             maxScore += 1;
             if (answers.hardwareCompatibility === "critical") {
-                
                 if (distro["Dasar/Pondasi"].toLowerCase().includes("ubuntu") || distro["Dasar/Pondasi"].toLowerCase().includes("debian")) {
                     score += 1;
                 }
@@ -759,13 +761,11 @@ function calculateResults() {
 
         if (answers.architecture) {
             maxScore += 1;
-            if (answers.architecture === "32-bit" && distro["Dasar/Pondasi"].toLowerCase().includes("32")) {
-            
+            if (answers.architecture === "32-bit") {
                 if (["antiX", "Puppy Linux", "Tiny Core Linux"].includes(distro["Nama"])) {
                      score += 1;
                 }
             } else if (answers.architecture === "64-bit") {
-                // Sebagian besar distro modern adalah 64-bit, kecuali yang eksplisit 32-bit atau ARM.
                 if (!distro["Dasar/Pondasi"].toLowerCase().includes("32") && !distro["Dasar/Pondasi"].toLowerCase().includes("arm")) {
                     score += 1;
                 }
@@ -776,7 +776,6 @@ function calculateResults() {
             }
         }
 
-        // RAM
         if (!isNaN(answers.ram)) {
             maxScore += 1;
             if (answers.ram >= distro["RAM Minimal (MB)"]) {
@@ -787,7 +786,7 @@ function calculateResults() {
         if (answers.storage) {
             if (answers.storage === "small") {
                 if (distro["RAM Minimal (MB)"] > 2048) {
-                    score -= 0.5;
+                    score -= 0.5; // Penalti kecil
                 }
             }
         }
@@ -796,10 +795,9 @@ function calculateResults() {
             if (answers.deviceAge === "old") {
                 if (distro["Kategori"].toLowerCase().includes("ringan") || distro["RAM Minimal (MB)"] <= 1024) {
                     score += 1;
-                    maxScore += 1; 
+                    maxScore += 1;
                 }
             } else if (answers.deviceAge === "modern") {
-               
                 if (distro["RAM Minimal (MB)"] >= 4096) {
                     score += 1;
                     maxScore += 1;
@@ -807,34 +805,31 @@ function calculateResults() {
             }
         }
 
-
         if (answers.gpuType) {
             if (["discrete-nvidia", "discrete-amd", "discrete-intel"].includes(answers.gpuType)) {
                 if (distro["Kategori"].toLowerCase().includes("gaming")) {
                     score += 1;
-                    maxScore += 1; 
+                    maxScore += 1;
                 }
             }
         }
-
         if (answers.diskType === "ssd" && distro["Fitur Utama"].toLowerCase().includes("btrfs")) {
             score += 1;
-            maxScore += 1; 
+            maxScore += 1;
         }
-
 
         scores[distro["Nama"]] = { score, maxScore, details: distro };
     });
 
     const results = [];
     for (const [distroName, data] of Object.entries(scores)) {
-        if (data.maxScore > 0) { 
+        if (data.maxScore > 0) { // Hindari pembagian dengan nol
             const percentage = (data.score / data.maxScore) * 100;
 
             if (percentage > 30) {
                 results.push({
                     name: distroName,
-                    percentage: Math.round(percentage * 100) / 100,
+                    percentage: Math.round(percentage * 100) / 100, // Bulatkan ke 2 desimal
                     details: data.details
                 });
             }
@@ -843,10 +838,8 @@ function calculateResults() {
 
     results.sort((a, b) => b.percentage - a.percentage);
 
-
     displayResults(results);
 }
-
 function displayResults(results) {
     const container = document.getElementById('results-container');
     if (results.length === 0) {
